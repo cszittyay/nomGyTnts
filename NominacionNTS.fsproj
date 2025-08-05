@@ -1,0 +1,24 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net8.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Include="TiposNTS.fs" />
+    <Compile Include="DbContext.fs" />
+    <Compile Include="Entrega.fs" />
+    <Compile Include="ContratoTransporte.fs" />
+    <Compile Include="ContratosGas.fs" />
+    <Compile Include="Nominacion.fs" />
+    <Compile Include="Program.fs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Flips" Version="2.4.10" />
+    <PackageReference Include="Microsoft.Data.SqlClient" Version="6.1.0" />
+    <PackageReference Include="SQLProvider" Version="1.5.12" />
+  </ItemGroup>
+
+</Project>

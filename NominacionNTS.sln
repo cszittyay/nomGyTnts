@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.14.36221.1 d17.14
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "NominacionNTS", "NominacionNTS.fsproj", "{5BFCF22E-F40B-4973-903F-4212A7D7ADAB}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{5BFCF22E-F40B-4973-903F-4212A7D7ADAB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5BFCF22E-F40B-4973-903F-4212A7D7ADAB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5BFCF22E-F40B-4973-903F-4212A7D7ADAB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5BFCF22E-F40B-4973-903F-4212A7D7ADAB}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {B9791CA4-F39C-457D-B1B6-A20AA0B1836C}
+	EndGlobalSection
+EndGlobal
