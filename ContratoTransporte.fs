@@ -9,6 +9,8 @@ let cteDet = ctx.Dbo.TContratoTransporteDetalle
 let punto = ctx.Dbo.TPunto
 
 
+// Obtiene los contratos de transporte vigentes para un día dado
+
 let contratosTransporte  diaGas = query{
                 for cto in ctoTte do
                 join ctd in cteDet on (cto.IdContratoTransporte = ctd.IdContratoTransporte)
