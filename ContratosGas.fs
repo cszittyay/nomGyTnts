@@ -18,6 +18,9 @@ let cgVigente diaGas =
         join pto in ctx.Dbo.TPunto on (cgd.IdPunto = pto.IdPunto)
         join cgCMD in ctx.Dbo.TContratoGasDetalleCmdDiaria on (cgd.IdContratoGasDetalle = cgCMD.IdContratoGasDetalle)
         
-        where (cg.VigenciaDesde <= diaGas && cg.VigenciaHasta >= diaGas && cg.IdComercializador = idNaturgy && cgCMD.Dia  = diaGas )
+        where (cg.VigenciaDesde <= diaGas && cg.VigenciaHasta >= diaGas && 
+               cg.IdComercializador = idNaturgy && 
+               cgCMD.Dia  = diaGas  &&
+               cgCMD.CantidadCmd > 0.0m)
         select { Contrato = Contrato cg.Nemonico ; PuntoRX = Punto pto.Codigo ;   CMD = float cgCMD.CantidadCmd * 1.0<GJ> ; Precio =  1.0<USD/GJ>  }
     }
