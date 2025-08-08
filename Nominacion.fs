@@ -33,7 +33,7 @@ let completarContratosGas (contratosExistentes: ContratoGas list) : ContratoGas 
                         Contrato = contrato
                         PuntoRX = punto
                         CMD = 0.0<GJ>
-                        Precio = 1.0<USD/GJ>
+                        Precio = 100.0<USD/GJ>
                     } ]
 
     contratosExistentes @ contratosFaltantes
@@ -66,23 +66,25 @@ let completarContratosTransporte (contratosExistentes: ContratoTransporte list) 
 
 
 
-let contratosGasCompleto = cgVigente diaGas |> Seq.toList |> completarContratosGas 
+let contratosGasCompleto = contratosGasConMakeup diaGas |> Seq.toList |> completarContratosGas
 let dContratosGas = contratosGasCompleto |> List.map (fun c -> (c.Contrato, c.PuntoRX), c) |> SMap2
 let dCtoGasPuntoPrecio = contratosGasCompleto |> List.map (fun c -> (c.Contrato, c.PuntoRX), c.Precio) |> SMap2
 let puntosRX = contratosGasCompleto |> List.map (fun c -> c.PuntoRX) |> List.distinct
 
 // Transporte contracts
 // completar contratos de transporte
-let contratosTransporteCompleto =   contratosTransporte diaGas |> Seq.toList |> completarContratosTransporte
+let contratosTteMakeup = contratosTteMakeup diaGas |> Seq.toList
+let contratosTransporteCompleto =  contratosTteMakeup @ (contratosTransporte diaGas |> Seq.toList) |> completarContratosTransporte
+
+
 let dCtoTteTarifa = contratosTransporteCompleto |> List.map (fun c -> (c.Contrato, c.PuntoRX, c.PuntoEX), c.Tarifa) |> SMap3
 let dContratosTransporte = contratosTransporteCompleto |> List.map (fun c -> (c.Contrato, c.PuntoRX, c.PuntoEX), c.CMD) |> SMap3.ofList
 let dCtoTtePrecio = contratosTransporteCompleto |> List.map (fun c -> c.Contrato, c.Tarifa) |> SMap
+let puntosEX = contratosTransporteCompleto |> List.filter(fun c -> c.CMD > 0.<GJ>) |> List.map (fun c -> c.PuntoEX) |> List.distinct
 
+let entregas = entrega diaGas   |> Seq.filter (fun c -> List.contains c.PuntoEX puntosEX)
+let dEntregas = entregas |> Seq.map (fun c -> c.PuntoEX, c.Entrega) |> SMap
 
-let entregas = entrega diaGas   |> Seq.toList
-let dEntregas = entregas |> List.map (fun c -> c.PuntoEX, c.Entrega) |> SMap
-
-let puntosEX = entregas |> List.map (fun c -> c.PuntoEX) |> List.distinct
 
 
 let nominacionFlip =

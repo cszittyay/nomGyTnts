@@ -24,3 +24,12 @@ let cgVigente diaGas =
                cgCMD.CantidadCmd > 0.0m)
         select { Contrato = Contrato cg.Nemonico ; PuntoRX = Punto pto.Codigo ;   CMD = float cgCMD.CantidadCmd * 1.0<GJ> ; Precio =  1.0<USD/GJ>  }
     }
+
+
+
+// a los contratos de gas añadir las posibles inyecciones MAKEUP
+let contratoMakup = { Contrato = Contrato "MAKEUP" ; PuntoRX = puntoMakeup ;   CMD = 999999.0<GJ> ; Precio =  100.0<USD/GJ>  }
+
+let contratosGasConMakeup diaGas = 
+    let contratos = cgVigente diaGas |> Seq.toList
+    contratoMakup :: contratos

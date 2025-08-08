@@ -28,7 +28,13 @@ type Entrega = {
 }
 
 
+// Constantes
+
 let fuel = 1.325 / 100.0
 
+let puntoMakeup = Punto "MAKEUP 3"
 
+// Entidad Legal CENGAS
+let idCengas = 12
 
+let idNaturgyServicios = 763
